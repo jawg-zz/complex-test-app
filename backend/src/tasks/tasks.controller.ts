@@ -3,7 +3,7 @@ import { TasksService } from './tasks.service';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
-@Controller('api/tasks')
+@Controller('tasks')
 @UseGuards(JwtAuthGuard)
 export class TasksController {
   constructor(private tasksService: TasksService) {}
