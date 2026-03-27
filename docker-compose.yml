@@ -77,13 +77,13 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: https://complextest.spidmax.win/api
-        NEXT_PUBLIC_WS_URL: wss://complextest.spidmax.win/ws
+        NEXT_PUBLIC_API_URL: https://complextest.spidmax.win
+        NEXT_PUBLIC_WS_URL: wss://complextest.spidmax.win
     container_name: frontend
     environment:
       NODE_ENV: production
-      NEXT_PUBLIC_API_URL: https://complextest.spidmax.win/api
-      NEXT_PUBLIC_WS_URL: wss://complextest.spidmax.win/ws
+      NEXT_PUBLIC_API_URL: https://complextest.spidmax.win
+      NEXT_PUBLIC_WS_URL: wss://complextest.spidmax.win
     depends_on:
       - backend
     networks:

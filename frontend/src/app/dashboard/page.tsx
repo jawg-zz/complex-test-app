@@ -22,8 +22,8 @@ export default function Dashboard() {
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const router = useRouter();
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-  const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001';
+  const apiUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001') + '/api';
+  const wsUrl = (process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001') + '/ws';
 
   const fetchTasks = useCallback(async () => {
     const token = Cookies.get('token');
@@ -33,7 +33,7 @@ export default function Dashboard() {
     }
 
     try {
-      const res = await fetch(`${apiUrl}/api/tasks`, {
+      const res = await fetch(`${apiUrl}/tasks`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.status === 401) {
@@ -97,7 +97,7 @@ export default function Dashboard() {
     if (!token || !newTask.title.trim()) return;
 
     try {
-      const res = await fetch(`${apiUrl}/api/tasks`, {
+      const res = await fetch(`${apiUrl}/tasks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ export default function Dashboard() {
     if (!token || !editingTask) return;
 
     try {
-      const res = await fetch(`${apiUrl}/api/tasks/${editingTask.id}`, {
+      const res = await fetch(`${apiUrl}/tasks/${editingTask.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ export default function Dashboard() {
     if (!token) return;
 
     try {
-      await fetch(`${apiUrl}/api/tasks/${taskId}`, {
+      await fetch(`${apiUrl}/tasks/${taskId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
