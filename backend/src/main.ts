@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   app.enableCors({
-    origin: process.env.DOMAIN || 'http://localhost:3000',
+    origin: ['https://complextest.spidmax.win', process.env.DOMAIN].filter(Boolean),
     credentials: true,
   });
   
